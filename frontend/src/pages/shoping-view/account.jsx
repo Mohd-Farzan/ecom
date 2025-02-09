@@ -1,5 +1,5 @@
 import React from 'react'
-import book2 from '../../assets/img/book2.jpg'
+import book2 from '../../assets/img/download.jpeg'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import Orders from '@/componant/shoping-view/orders'
 import Address from '@/componant/shoping-view/address'

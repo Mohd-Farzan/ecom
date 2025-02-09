@@ -19,7 +19,7 @@ function ShopingProductTile({product,handleGetProductDetails, handleAddToCart}) 
                     product?.salePrice> 0 ?<Badge className='absolute top-2 left-2 bg-red-400 hover:bg-red-700'>Sale</Badge>:null
                 }
             </div>
-            {/* <CardContent className='p-4 '>
+            <CardContent className='p-4 '>
                 <h2 className='text-xl font-bold mb-2'>{product?.title}</h2>
                 <div className='flex justify-between items-center mb-2'>
                     <span className='text-sm text-muted-foreground'>{categoryOptionMap[product?.category]}</span>
@@ -31,7 +31,7 @@ function ShopingProductTile({product,handleGetProductDetails, handleAddToCart}) 
                         product?.salePrice>0? <span className='text-lg font-semibold text-primary' >${product?.salePrice}</span>:null
                     }
                 </div>
-            </CardContent> */}
+            </CardContent>
             
         </div>
         <CardFooter className='absolute left-0 right-0 bottom-0 bg-white/80 backdrop-blur p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100'>
