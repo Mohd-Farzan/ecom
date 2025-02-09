@@ -48,7 +48,7 @@ function AuthLogin() {
         onSubmit={onSubmit}
         
       />
-      <p className='text-slate-200'>Don't have an account ? 
+      <p className='text-slate-200'>Don't have an account
         <Link className='font-medium text-primary text-slate-300  hover:underline' to='/signup'> Create an account</Link>
       </p>
     </div>

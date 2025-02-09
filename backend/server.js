@@ -15,7 +15,7 @@ const _dirname=path.resolve();
 const PORT = process.env.PORT || 5000;
 const app = express();
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: 'https://the-lawncollection.onrender.com/',
   // Ensure this matches your frontend's origin
   methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT','OPTIONS'], // Correct spelling and add 'OPTIONS'
   allowedHeaders: [
