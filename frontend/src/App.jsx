@@ -10,8 +10,7 @@ import Shoplayout from './componant/shoping-view/layout';
 import ShopingAcount from './componant/shoping-view/address';
 import ShopingCheackout from './pages/shoping-view/checkout';
 import ShopingList from './pages/shoping-view/list';
-
-import CheckAuth from './componant/common/CheckAuth';
+import CheckAuth from './componant/common/checkauth';
 import { useDispatch, useSelector } from 'react-redux';
 import 'react-toastify/dist/ReactToastify.css';
 import { checkAuth } from './store/auth-slice';
