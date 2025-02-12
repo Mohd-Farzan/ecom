@@ -67,11 +67,15 @@ export const addProductFromElement=[
     name:'category',
     componentType:'select',
     options:[
-        {id:"men",label:'Men'},
-        {id:'women',label:'Women'},
-        {id:'kids',label:'Kids'},
-        {id:'accessories',label:'Accessories'},
-        {id:'footwear',label:'Footwear'},
+        {id:"lehenga",label:'Lehenga'},
+        {id:'garara',label:'garara'},
+        {id:'sharara',label:'Sharara'},
+        {id:'wedding suit',label:'Wedding Suit'},
+        {id:'cotton suit',label:'Cotton Suit'},
+        {id:"woollen suit",label:'Woollen Suit'},
+        {id:'ready mate suit',label:'Ready Mate Suit'},
+        {id:'jaipuri suit',label:'Jaipuri Suit'},
+        {id:'chunri suit',label:'Chunri Suit'},
         ],
     },
     {
@@ -157,10 +161,15 @@ export const sortOptions=[
     {id:"title-ztoa",lable:"title Z to A"},
 ];
 export const categoryOptionMap={
-    "men":"Men",
-    "women":"Women",
-    "kids":"Kids",
-    "footwear":"Footwear"
+    "lenhenga":"Lenhenga",
+    "garara":"Garara",
+    "sharara":"Sharara",
+    "wedding suit":"Wedding Suit",
+    "cotton suit":"Cotton Suit",
+    "woollen suit":"Woollen Suit",
+    "ready mate suit":"Ready Mate Suit",
+    "jaipuri suit":"Jaipuri Suit",
+    "chunri suit":"Chunri Suit"
 }
 export const addressFormControls=[
     {
