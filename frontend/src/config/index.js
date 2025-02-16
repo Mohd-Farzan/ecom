@@ -110,12 +110,12 @@ export const shopingHeaderMenuItems=[
     {
         id:'stitched',
         lable:'STITCHED',
-        path:'/shop/stitched'
+        path:'/shop/list'
     },
     {
         id:'unstitched',
         lable:'UNSTITCHED',
-        path:'/shop/unstitched'
+        path:'/shop/list'
     },
     {
         id:'enquiry',
@@ -249,5 +249,35 @@ export const addressFormControls=[
         placeholder:'enter your destination'
     },
    
+]
+export const enquiryForm=[
+    {
+        name:'email',
+        label:"Email",
+        placeholder:"enter your email ",
+        componentType:"input",
+        type:"email",
+    },
+    {
+        name:'userName',
+        label:"User Name",
+        placeholder:"enter your name ",
+        componentType:"input",
+        type:"text",
+    },
+    {
+        name:'phone',
+        label:"Phone Number",
+        placeholder:"enter your Phone Number",
+        componentType:"input",
+        type:"number",
+    },
+    {
+        name:'message',
+        label:"Message",
+        placeholder:"What is in your mind? ",
+        componentType:"input",
+        type:"textarea",
+    },
 ]
 

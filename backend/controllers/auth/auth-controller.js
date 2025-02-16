@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const signupModel = require('../../models/SignupModel');
 const loginModel = require('../../models/loginModel');
+const enquiryModel = require('../../models/EnquiryModel');
 
 // Signup function
 const signupUser = async (req, res) => {
@@ -25,6 +26,32 @@ const signupUser = async (req, res) => {
         res.status(200).json({
             success: true,
             message: 'User account created successfully',
+            user: newUser,
+        });
+       
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error',
+        });
+    }
+};
+
+const enquiryForm = async (req, res) => {
+    const { email,userName, phone, message } = req.body;
+    try {
+        const newUser = new enquiryModel({
+            email,
+            userName,
+            phone,
+            message,
+        });
+
+        await newUser.save();
+        res.status(200).json({
+            success: true,
+            message: 'message sent',
             user: newUser,
         });
        
@@ -127,4 +154,4 @@ const AuthMiddleware = (req, res, next) => {
 
 
 
-module.exports = { signupUser, loginUser, logoutUser, AuthMiddleware };
+module.exports = { signupUser, loginUser, logoutUser, AuthMiddleware, enquiryForm };

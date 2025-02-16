@@ -25,6 +25,21 @@ export const SignupUser = createAsyncThunk(
         }
     }
 );
+export const EnquiryForm = createAsyncThunk(
+    'auth/Enquiry',
+    async (FormData, { rejectWithValue }) => {
+        try {
+            const response = await axios.post('https://the-lawncollection.onrender.com/api/auth/enquiryForm', FormData, {
+                withCredentials: true
+            });
+            return response.data;
+        } catch (error) {
+            // Handle error properly to avoid potential errors
+            const message = error.response && error.response.data ? error.response.data : 'An error occurred';
+            return rejectWithValue(message);
+        }
+    }
+);
 
 // Thunk for logging in the user
 export const LoginUser = createAsyncThunk(
@@ -138,6 +153,21 @@ const authSlice = createSlice({
                 state.isAuthenticated=action.payload.success?true:false;   
             })
             .addCase(LoginUser.rejected, (state, action) => {
+                state.isLoading = false;
+                state.user = null;
+                state.isAuthenticated = false;
+                state.error = action.payload // Directly set the error message
+            })
+            .addCase(EnquiryForm.pending, (state) => {
+                state.isLoading = true;
+                state.error = null; // Clear any previous errors
+            })
+            .addCase(EnquiryForm.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.user=action.payload.success?action.payload.user:null;
+                state.isAuthenticated=action.payload.success?true:false;   
+            })
+            .addCase(EnquiryForm.rejected, (state, action) => {
                 state.isLoading = false;
                 state.user = null;
                 state.isAuthenticated = false;
