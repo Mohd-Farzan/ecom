@@ -127,11 +127,6 @@ export const shopingHeaderMenuItems=[
         lable:'CONTACT US',
         path:'/shop/contactUs'
     },
-    {
-        id:'footware',
-        lable:'Footware',
-        path:'/shop/list'
-    },
 ];
 export const filterOptions={
     category:[

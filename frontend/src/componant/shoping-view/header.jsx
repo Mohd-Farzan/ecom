@@ -2,7 +2,7 @@ import { House, SquareMenu, ShoppingCart } from "lucide-react";
 import { Button } from "../../components/ui/button";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { shopingHeaderMenuItems } from "@/config";
+import { categoryOptionMap, categoryunStitchedMap, shopingHeaderMenuItems } from "@/config";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu"; // Ensure DropdownMenuContent is imported
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,29 +11,6 @@ import {LogOut } from "lucide-react"
 import CartWrapper from "./cart-wrapper";
 import { useEffect, useState } from "react";
 import { fetchCart } from "@/store/shop/cart-slice";
-import { Label } from "@/components/ui/label";
-
-
-function MenuItems() {
-  const navigate=useNavigate();
-  function handleNavigate(getCurrentMenuITem){
-    sessionStorage.removeItem('filters');
-    const currentFilter=getCurrentMenuITem.id!=='home'?{
-      category:[getCurrentMenuITem.id]
-    }:null
-    sessionStorage.setItem('filters', JSON.stringify(currentFilter))
-    navigate(getCurrentMenuITem.path)
-  }
-  return (
-    <nav className="flex flex-col lg:mb-0 items-center gap-6 lg:flex-row ">
-      {shopingHeaderMenuItems.map(menuItem => (
-        <Label onClick={()=>handleNavigate(menuItem)}className='text-sm font-bold cursor-pointer transition ease-in-out transform hover:scale-125' key={menuItem.id}>
-          {menuItem.lable}
-        </Label >
-      ))}
-    </nav>
-  );
-}
 
 function HeaderRight() {
   const { user } = useSelector((state) => state.auth);
@@ -78,34 +55,101 @@ function HeaderRight() {
 }
 
 function ShopingHeader(){
+  const navigate=useNavigate();
+  function handleNavigate(getCurrentMenuITem){
+    sessionStorage.removeItem('filters');
+    const currentFilter=getCurrentMenuITem.id!=='home'?{
+      category:[getCurrentMenuITem.id]
+    }:null
+    sessionStorage.setItem('filters', JSON.stringify(currentFilter))
+    navigate(getCurrentMenuITem.path)
+  }
   return (
-    <header className="w-full border-b bg-[#edaf82]">
-      <div className="flex h-16 items-center justify-between px-4 md:px-6">
-        <Link to='/shop/home' className="flex items-center gap-2">
-          <House className="h-6 w-6" />
-          <span>Home</span>
-        </Link>
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="outline" size='icon' className='lg:hidden'>
-              <SquareMenu className='h-6 w-6' />
-              <span className="sr-only">Toggle header menu</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent side='right' className='w-full max-w-xs'> {/* Corrected mx-w-xs to max-w-xs */}
-            <MenuItems />
-            <HeaderRight/>
-          </SheetContent>
-        </Sheet>
-        <div className="hidden lg:block">
-          <MenuItems />
-        </div>
-          <div className="hidden lg:block">
-            <HeaderRight />
-          </div>
+    // <header className="w-full border-b bg-[#edaf82]">
+    //   <div className="flex h-16 items-center justify-between px-4 md:px-6">
+    //     <Link to='/shop/home' className="flex items-center gap-2">
+    //       <House className="h-6 w-6" />
+    //       <span>Home</span>
+    //     </Link>
+    //     <Sheet>
+    //       <SheetTrigger asChild>
+    //         <Button variant="outline" size='icon' className='lg:hidden'>
+    //           <SquareMenu className='h-6 w-6' />
+    //           <span className="sr-only">Toggle header menu</span>
+    //         </Button>
+    //       </SheetTrigger>
+    //       <SheetContent side='right' className='w-full max-w-xs'> {/* Corrected mx-w-xs to max-w-xs */}
+    //         <MenuItems />
+    //         <HeaderRight/>
+    //       </SheetContent>
+    //     </Sheet>
+    //     <div className="hidden lg:block">
+    //       <MenuItems />
+    //     </div>
+    //       <div className="hidden lg:block">
+    //         <HeaderRight />
+    //       </div>
   
-      </div>
-    </header>
+    //   </div>
+    // </header>
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <Link to="/home" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>HOME</NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>STITCHED</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
+              {categoryOptionMap.map((item) => (
+                <li key={item.path}>
+                  <NavigationMenuLink asChild>
+                    <Link
+                      to={item.path}
+                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    >
+                      <div onClick={()=>handleNavigate(item)} className="text-sm font-medium leading-none">{item.label}</div>
+                    </Link>
+                  </NavigationMenuLink>
+                </li>
+              ))}
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>UNSTITCHED</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
+              {categoryunStitchedMap.map((item) => (
+                <li key={item.path}>
+                  <NavigationMenuLink asChild>
+                    <Link
+                      to={item.path}
+                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                    >
+                      <div onClick={()=>handleNavigate(item)} className="text-sm font-medium leading-none">{item.label}</div>
+                      
+                    </Link>
+                  </NavigationMenuLink>
+                </li>
+              ))}
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <Link to="enquiry" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>ENQUIRY</NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <Link to="contact" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>CONTACT US</NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
   );
 }
 
