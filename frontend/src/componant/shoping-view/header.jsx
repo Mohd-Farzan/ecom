@@ -11,6 +11,7 @@ import {LogOut } from "lucide-react"
 import CartWrapper from "./cart-wrapper";
 import { useEffect, useState } from "react";
 import { fetchCart } from "@/store/shop/cart-slice";
+import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 
 function HeaderRight() {
   const { user } = useSelector((state) => state.auth);
