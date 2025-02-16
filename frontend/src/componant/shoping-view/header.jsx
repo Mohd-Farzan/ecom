@@ -105,7 +105,7 @@ function ShopingHeader(){
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
               {categoryOptionMap.map((item) => (
-                <li key={item.path}>
+                <li key={item.id}>
                   <NavigationMenuLink asChild>
                     <Link
                       to={item.path}
@@ -124,7 +124,7 @@ function ShopingHeader(){
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
               {categoryunStitchedMap.map((item) => (
-                <li key={item.path}>
+                <li key={item.id}>
                   <NavigationMenuLink asChild>
                     <Link
                       to={item.path}
