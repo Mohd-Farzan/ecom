@@ -195,25 +195,27 @@ export const sortOptions=[
     {id:"title-atoz",lable:"title A to Z"},
     {id:"title-ztoa",lable:"title Z to A"},
 ];
-export const categoryOptionMap={
-    "lehenga":"Lehenga",
-    "garara":"Garara",
-    "sharara":"Sharara",
-    "weddingSuit":"Wedding Suit",
-    "cottonSuit":"Cotton Suit",
-    "woollenSuit":"Woollen Suit",
-    "readymateSuit":"Ready Mate Suit",
-    "jaipuriSuit":"Jaipuri Suit",
-    "chunriSuit":"Chunri Suit"
-}
-export const categoryunStitchedMap={
-    "cottonFabric":"Cotton Fabric",
-    "silkFabric":"Silk Fabric",
-    "chanderiSilkFabric":"ChanderiSilkFabric",
-    "organzaFabric":"Organza Fabric",
-    "net":"Net",
-    "cambricCottonFabric":"Cambric Cotton Fabric",
-}
+export const categoryOptionMap = [
+    { id: "lehenga", label: "Lehenga", path: "/shop/lehenga" },
+    { id: "garara", label: "Garara", path: "/shop/garara" },
+    { id: "sharara", label: "Sharara", path: "/shop/sharara" },
+    { id: "weddingSuit", label: "Wedding Suit", path: "/shop/wedding-suit" },
+    { id: "cottonSuit", label: "Cotton Suit", path: "/shop/cotton-suit" },
+    { id: "woollenSuit", label: "Woollen Suit", path: "/shop/woollen-suit" },
+    { id: "readymateSuit", label: "Ready Mate Suit", path: "/shop/readymate-suit" },
+    { id: "jaipuriSuit", label: "Jaipuri Suit", path: "/shop/jaipuri-suit" },
+    { id: "chunriSuit", label: "Chunri Suit", path: "/shop/chunri-suit" }
+];
+
+export const categoryunStitchedMap = [
+    { id: "cottonFabric", label: "Cotton Fabric", path: "/shop/cotton-fabric" },
+    { id: "silkFabric", label: "Silk Fabric", path: "/shop/silk-fabric" },
+    { id: "chanderiSilkFabric", label: "Chanderi Silk Fabric", path: "/shop/chanderi-silk-fabric" },
+    { id: "organzaFabric", label: "Organza Fabric", path: "/shop/organza-fabric" },
+    { id: "net", label: "Net", path: "/shop/net-fabric" },
+    { id: "cambricCottonFabric", label: "Cambric Cotton Fabric", path: "/shop/cambric-cotton-fabric" }
+];
+
 export const addressFormControls=[
     {
         label:'Address',

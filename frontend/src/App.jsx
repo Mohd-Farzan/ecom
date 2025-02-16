@@ -19,6 +19,7 @@ import ShopingHome from './pages/shoping-view/home';
 import ShopAccount from './pages/shoping-view/account';
 import PaypalCancel from './pages/shoping-view/paypalCancel';
 import PaypalReturn from './pages/shoping-view/paypalReturn';
+import Enquiry from './pages/shoping-view/enquiry';
 function App() {
     const dispatch = useDispatch();
     const { isAuthenticated, user,  } = useSelector(state => state.auth);
@@ -62,6 +63,8 @@ function App() {
                         <Route path='checkout' element={<ShopingCheackout />} />
                         <Route path='list' element={<ShopingList />} />
                         <Route path='paypal-return' element={<PaypalReturn/>}/>
+                        <Route path='enquiry' element={<Enquiry/>}/>
+
                         
                     </Route>
                 </Routes>
