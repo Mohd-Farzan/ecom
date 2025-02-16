@@ -1,6 +1,6 @@
 import Commonform from '@/componant/common/form';
 import { enquiryForm, registerFormControls } from '@/config';
-import { EnquiryForm, SignupUser } from '@/store/auth-slice';
+import { EnquiryForm } from '@/store/enquiry-slice';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
