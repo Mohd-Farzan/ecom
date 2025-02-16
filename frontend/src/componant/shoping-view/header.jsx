@@ -144,11 +144,6 @@ function ShopingHeader(){
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>ENQUIRY</NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link to="contact" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>CONTACT US</NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
   );

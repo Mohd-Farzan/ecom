@@ -52,7 +52,7 @@ const enquiryForm = async (req, res) => {
         res.status(200).json({
             success: true,
             message: 'message sent',
-            user: newUser,
+            data: newUser,
         });
        
     } catch (error) {

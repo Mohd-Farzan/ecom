@@ -122,11 +122,6 @@ export const shopingHeaderMenuItems=[
         lable:'ENQUIRY',
         path:'/shop/enquiry'
     },
-    {
-        id:'contactus',
-        lable:'CONTACT US',
-        path:'/shop/contactUs'
-    },
 ];
 export const filterOptions={
     category:[

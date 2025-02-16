@@ -1,6 +1,6 @@
 import Commonform from '@/componant/common/form';
 import { enquiryForm, registerFormControls } from '@/config';
-import { SignupUser } from '@/store/auth-slice';
+import { EnquiryForm, SignupUser } from '@/store/auth-slice';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -17,11 +17,10 @@ const initialState = {
 function Enquiry() {
   const [formData, setFormData] = useState(initialState);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   function onSubmit(event) {
     event.preventDefault();
-    dispatch(SignupUser(formData)).then((data) => {
+    dispatch(EnquiryForm(formData)).then((data) => {
       if (data?.payload?.success) {
         toast.success('thank you for your efforts ! your message is sent')
       } else {

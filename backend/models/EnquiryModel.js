@@ -16,5 +16,5 @@ const userSchema= new mongoose.Schema({
 },{timestamps:true}
     
 );
-const enquiryModel=mongoose.model('user',userSchema)
+const enquiryModel=mongoose.model('enquiryData',userSchema)
 module.exports= enquiryModel
