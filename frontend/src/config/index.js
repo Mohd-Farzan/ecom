@@ -104,28 +104,28 @@ export const addProductFromElement=[
 ];
 export const shopingHeaderMenuItems=[
     {id:'home',
-    lable:'Home',
+    lable:'HOME',
     path:'/shop/home'
     },
     {
-        id:'men',
-        lable:'Men',
-        path:'/shop/list'
+        id:'stitched',
+        lable:'STITCHED',
+        path:'/shop/stitched'
     },
     {
-        id:'women',
-        lable:'Women',
-        path:'/shop/list'
+        id:'unstitched',
+        lable:'UNSTITCHED',
+        path:'/shop/unstitched'
     },
     {
-        id:'kids',
-        lable:'Kids',
-        path:'/shop/list'
+        id:'enquiry',
+        lable:'ENQUIRY',
+        path:'/shop/enquiry'
     },
     {
-        id:'accessories',
-        lable:'Accessories',
-        path:'/shop/list'
+        id:'contactus',
+        lable:'CONTACT US',
+        path:'/shop/contactUs'
     },
     {
         id:'footware',
@@ -136,22 +136,67 @@ export const shopingHeaderMenuItems=[
 export const filterOptions={
     category:[
         {
-            id:'men',
-            label:'Men'
+            id:'lehenga',
+            label:'Lehenga'
 
         },
         {
-            id:'women',
-            label:'Women'
+            id:'garara',
+            label:'Garara'
         },
         {
-            id:'kids',
-            label:'Kids'
+            id:'sharara',
+            label:'Sharara'
         },
         {
-            id:'footwear',
-            label:'Footwear'
+            id:'weddingSuit',
+            label:'Wedding Suit'
         },
+        {
+            id:"cottonSuit",
+            label:"Cotton Suit",
+        },
+        {
+           id:"woollenSuit",
+           label:"Woollen Suit",
+        },
+        {
+            id:"readymateSuit",
+            label:"Ready Mate Suit",
+        },
+        {
+            id:"jaipuriSuit",
+            label:"Jaipuri Suit",
+        },
+        {
+            id:"chunriSuit",
+            label:"Chunri Suit",
+        },
+
+        {
+            id:'cottonFabric',
+            label:'Cotton Fabric'
+        },
+        {
+            id:"silkFabric",
+            label:"Silk Fabric",
+        },
+        {
+           id:"chanderiSilkFabric",
+           label:"Chanderi Silk Fabric",
+        },
+        {
+            id:"organzaFabric",
+            label:"Organza Fabric",
+        },
+        {
+            id:"net",
+            label:"Net",
+        },
+        {
+            id:"cambricCottonFabric",
+            label:"Cambric Cotton Fabric",
+        }
     ]
 }
 export const sortOptions=[
@@ -161,15 +206,23 @@ export const sortOptions=[
     {id:"title-ztoa",lable:"title Z to A"},
 ];
 export const categoryOptionMap={
-    "lenhenga":"Lenhenga",
+    "lehenga":"Lehenga",
     "garara":"Garara",
     "sharara":"Sharara",
-    "wedding suit":"Wedding Suit",
-    "cotton suit":"Cotton Suit",
-    "woollen suit":"Woollen Suit",
-    "ready mate suit":"Ready Mate Suit",
-    "jaipuri suit":"Jaipuri Suit",
-    "chunri suit":"Chunri Suit"
+    "weddingSuit":"Wedding Suit",
+    "cottonSuit":"Cotton Suit",
+    "woollenSuit":"Woollen Suit",
+    "readymateSuit":"Ready Mate Suit",
+    "jaipuriSuit":"Jaipuri Suit",
+    "chunriSuit":"Chunri Suit"
+}
+export const categoryunStitchedMap={
+    "cottonFabric":"Cotton Fabric",
+    "silkFabric":"Silk Fabric",
+    "chanderiSilkFabric":"ChanderiSilkFabric",
+    "organzaFabric":"Organza Fabric",
+    "net":"Net",
+    "cambricCottonFabric":"Cambric Cotton Fabric",
 }
 export const addressFormControls=[
     {

@@ -14,10 +14,19 @@ dbConnect;
 const _dirname=path.resolve();
 const PORT = process.env.PORT || 5000;
 const app = express();
+const allowedOrigins = [
+  'https://the-lawncollection.onrender.com', 
+];
 app.use(cors({
-  origin: 'https://the-lawncollection.onrender.com/',
-  // Ensure this matches your frontend's origin
-  methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT','OPTIONS'], // Correct spelling and add 'OPTIONS'
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  
+  methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT','OPTIONS'], 
   allowedHeaders: [
     'Content-Type',
     'Authorization',
@@ -25,8 +34,6 @@ app.use(cors({
   ],
   credentials: true,
 }));
-app.options('*', cors());  // Allow preflight across all routes
-
 app.use(cookieParser());
 app.use(express.json());
 app.use('/api/auth', authRouter);

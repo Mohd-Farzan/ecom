@@ -23,11 +23,16 @@ function ShopingHome() {
     const dispatch=useDispatch();
     const navigate=useNavigate();
     const categories=[
-        {id:"men",label:'Men' ,icon: ShirtIcon },
-        {id:'women',label:'Women',icon: SquareXIcon},
-        {id:'kids',label:'Kids', icon:BabyIcon},
-        {id:'accessories',label:'Accessories',icon:WatchIcon},
-        {id:'footwear',label:'Footwear',icon: ShovelIcon},
+
+        {id:"lehenga",label:"Lehenga", icon:ShirtIcon},
+        {id:"garara",label:"Garara" ,icon:ShirtIcon},
+        {id:"sharara",label:"Sharara" ,icon:ShirtIcon},
+        {id:"weddingSuit",label:"Wedding Suit", icon:ShirtIcon},
+        {id:"cottonSuit",label:"Cotton Suit" ,icon:ShirtIcon},
+        {id:"woollenSuit",label:"Woollen Suit" ,icon:ShirtIcon},
+        {id:"readymateSuit",label:"Ready Mate Suit" ,icon:ShirtIcon},
+        {id:"jaipuriSuit",label:"Jaipuri Suit" ,icon:ShirtIcon},
+        {id:"chunriSuit",label:"Chunri Suit", icon:ShirtIcon}
     ];
     function handleNavigateToListingPage(getCurrentItem,section){
         sessionStorage.removeItem('filters');
