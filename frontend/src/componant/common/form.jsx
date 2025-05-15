@@ -26,23 +26,25 @@ function Commonform({ formControls, formData, setFormData, onSubmit, buttonText 
                     />
                 );
 
-            case "select":
+             case 'select':
                 return (
                     <Select
-                        value={formData[controlItem.name] || ""}
-                        onValueChange={(selectedValue) =>
-                            setFormData({
-                                ...formData,
-                                [controlItem.name]: selectedValue,
-                            })
-                        }
+                        onValueChange={(value) => setFormData({
+                            ...formData,
+                            [controlItem.name]: value
+                        })}
+                        value={value}
                     >
-                        <SelectTrigger>
-                            <SelectValue placeholder={controlItem.placeholder} />
+                        <SelectTrigger className='w-full'>
+                            <SelectValue placeholder={controlItem.label} />
                         </SelectTrigger>
                         <SelectContent>
-                            <SelectItem value="admin">Saller</SelectItem>
-                            <SelectItem value="user">User</SelectItem>
+                            {controlItem.options && controlItem.options.length>0
+                            ?controlItem.options.map(optionItem => (
+                                <SelectItem key={optionItem.id} value={optionItem.id}>
+                                    {optionItem.label}
+                                </SelectItem>
+                            )):null}
                         </SelectContent>
                     </Select>
                 );

@@ -27,8 +27,10 @@ export const registerFormControls=[
         label:'Role',
         placeholder:'select your role',
         componentType:'select',
-        type:'select'
-        
+        options:[
+        {id:"saller",label:'Saller'},
+        {id:'user',label:'User'},
+        ],   
     }
 ];
 
