@@ -6,7 +6,7 @@ const initialState={
 }
 export const addAddress= createAsyncThunk('addresses/addAddress',
     async(formData)=>{
-    const response= await axios.post("http://localhost:5000/api/shop/address/add",formData
+    const response= await axios.post("https://the-lawncollection.onrender.com/api/shop/address/add",formData
     );
     return response.data
 }
@@ -14,7 +14,7 @@ export const addAddress= createAsyncThunk('addresses/addAddress',
 
 export const fetchAddress = createAsyncThunk('addresses/fetchAddress', async (userId,{rejectWithValue}) => {
     try {
-        const response = await axios.get(`http://localhost:5000/api/shop/address/get/${userId}`);
+        const response = await axios.get(`https://the-lawncollection.onrender.com/api/shop/address/get/${userId}`);
     // console.log(response, 'response');
     return response.data;
     } catch (error) {
@@ -24,7 +24,7 @@ export const fetchAddress = createAsyncThunk('addresses/fetchAddress', async (us
 });
 
 export const editAddress=createAsyncThunk('addresses/editAddress',async({userId,addressId,formData})=>{
-    const response=await axios.put(`http://localhost:5000/api/shop/address/edit/${userId}/${addressId}`,formData);
+    const response=await axios.put(`https://the-lawncollection.onrender.com/api/shop/address/edit/${userId}/${addressId}`,formData);
     return response.data
 })
 
@@ -32,7 +32,7 @@ export const deleteAddress = createAsyncThunk(
     "addresses/deleteAddress",
     async ({ userId, addressId }) => {
       const response = await axios.delete(
-        `http://localhost:5000/shop/address/delete/${userId}/${addressId}`
+        `https://the-lawncollection.onrender.com/shop/address/delete/${userId}/${addressId}`
       );
       return response.data;
     }

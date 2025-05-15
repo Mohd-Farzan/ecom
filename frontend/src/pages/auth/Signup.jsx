@@ -23,10 +23,10 @@ function AuthSignup() {
     // console.log("Form data being sent:", formData);
     dispatch(SignupUser(formData)).then((data) => {
       if (data?.payload?.success) {
-        toast.success('successfully signup')
-        setTimeout(() => navigate('/login'), 1500);
+        alert('successfully signup')
+        setTimeout(() => navigate('/login'), 1000);
       } else {
-        toast.error(data.payload?.message || "Signup failed!");
+        alert(data.payload?.message || "Signup failed!");
       }
     });
   }

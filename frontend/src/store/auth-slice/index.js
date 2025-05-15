@@ -32,7 +32,7 @@ export const LoginUser = createAsyncThunk(
     'auth/login',
     async (FormData, { rejectWithValue }) => {
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/login', FormData, {
+            const response = await axios.post('https://the-lawncollection.onrender.com/api/auth/login', FormData, {
                 withCredentials: true
             });
 
@@ -53,7 +53,7 @@ export const LogoutUser = createAsyncThunk(
     'auth/logout',
     async (_, { rejectWithValue }) => {
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/logout', {}, {
+            const response = await axios.post('https://the-lawncollection.onrender.com/api/auth/logout', {}, {
                 withCredentials: true
             });
             localStorage.removeItem('token'); // Remove token from local storage upon logout
@@ -72,7 +72,7 @@ export const checkAuth = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
             const token = localStorage.getItem('token'); // Fetch the token from localStorage
-            const response = await axios.get('http://localhost:5000/api/auth/checkauth', {
+            const response = await axios.get('https://the-lawncollection.onrender.com/api/auth/checkauth', {
                 withCredentials: true,
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -119,8 +119,8 @@ const authSlice = createSlice({
             })
             .addCase(SignupUser.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.user = action.payload;
-                state.isAuthenticated = true;
+                state.user = action.payload.user;
+                state.isAuthenticated = false;
                 state.error = null; // Clear any previous errors
             })
             .addCase(SignupUser.rejected, (state, action) => {
