@@ -7,7 +7,7 @@ import { Fragment } from "react"
 
 function ProductFilter({filters,handleFilter}) {
   return (
-    <div className='bg-[#e8ad83] rounded-lg shadow-sm'>
+    <div className='bg-[#ffecd1] rounded-lg shadow-sm'>
         <div className="p-4 border-b">
             <h2 className='text-lg font-extrabold'>Filters</h2>
         </div>
@@ -21,7 +21,7 @@ function ProductFilter({filters,handleFilter}) {
                                 {
                                     filterOptions[keyItems].map((options=><Label className='flex gap-2 items-center font-medium '>
                                         
-                                            <Checkbox 
+                                            <Checkbox
                                             checked={
                                                 filters && Object.keys(filters).length > 0 && 
                                                 filters[keyItems] && filters[keyItems].indexOf(options.id) >-1

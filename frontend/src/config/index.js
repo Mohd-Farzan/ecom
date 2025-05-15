@@ -70,12 +70,12 @@ export const addProductFromElement=[
         {id:"lehenga",label:'Lehenga'},
         {id:'garara',label:'garara'},
         {id:'sharara',label:'Sharara'},
-        {id:'wedding suit',label:'Wedding Suit'},
-        {id:'cotton suit',label:'Cotton Suit'},
-        {id:"woollen suit",label:'Woollen Suit'},
-        {id:'ready mate suit',label:'Ready Mate Suit'},
-        {id:'jaipuri suit',label:'Jaipuri Suit'},
-        {id:'chunri suit',label:'Chunri Suit'},
+        {id:'weddingSuit',label:'Wedding Suit'},
+        {id:'cottonSuit',label:'Cotton Suit'},
+        {id:"woollenSuit",label:'Woollen Suit'},
+        {id:'readyMateSuit',label:'Ready Mate Suit'},
+        {id:'jaipuriSuit',label:'Jaipuri Suit'},
+        {id:'chunriSuit',label:'Chunri Suit'},
         ],
     },
     {
@@ -110,12 +110,12 @@ export const shopingHeaderMenuItems=[
     {
         id:'stitched',
         lable:'STITCHED',
-        path:'/shop/list'
+        
     },
     {
         id:'unstitched',
         lable:'UNSTITCHED',
-        path:'/shop/list'
+
     },
     {
         id:'enquiry',
@@ -273,7 +273,7 @@ export const enquiryForm=[
         name:'message',
         label:"Message",
         placeholder:"What is in your mind? ",
-        componentType:"input",
+        componentType:"textarea",
         type:"textarea",
     },
 ]

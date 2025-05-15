@@ -6,7 +6,7 @@ export const EnquiryForm = createAsyncThunk(
     'enquiry/Enquiry',
     async (formData, { rejectWithValue }) => {
         try {
-            const response = await axios.post('https://the-lawncollection.onrender.com/api/auth/enquiryForm', formData, {
+            const response = await axios.post('http://localhost:5000/api/auth/enquiryForm', formData, {
                 withCredentials: true
             });
             return response.data;
@@ -24,6 +24,7 @@ const authSlice = createSlice({
   initialState: {
     formStatus: 'idle', // 'idle', 'loading', 'success', 'failed'
     formError: null,
+    formData:[]
   },
   reducers: {
     // Add other reducers if needed
@@ -34,16 +35,19 @@ const authSlice = createSlice({
       .addCase(EnquiryForm.pending, (state) => {
         state.formStatus = 'loading';
         state.formError = null;
+        state.formData=null;
       })
       // Handle form submission success
       .addCase(EnquiryForm.fulfilled, (state, action) => {
         state.formStatus = 'success';
+        state.formData=action.payload.data
         state.formError = null;
       })
       // Handle form submission failure
       .addCase(EnquiryForm.rejected, (state, action) => {
         state.formStatus = 'failed';
         state.formError = action.payload || 'Submission failed';
+
       });
   },
 });

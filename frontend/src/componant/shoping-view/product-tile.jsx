@@ -34,7 +34,7 @@ function ShopingProductTile({product,handleGetProductDetails, handleAddToCart}) 
             </CardContent>
             
         </div>
-        <CardFooter className='absolute left-0 right-0 bottom-0 bg-white/80 backdrop-blur p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100'>
+        <CardFooter className='absolute left-0 right-0 bottom-0 bg-[#ffecd1] backdrop-blur p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100'>
                 <Button onClick={()=>handleAddToCart(product?._id)}>
                     Add To cart
                 </Button>

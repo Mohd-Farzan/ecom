@@ -31,7 +31,6 @@ function App() {
      
 
   return (
-    <div className=' flex overflow-hidden w-full'>
       
       <Routes>
                     <Route path='/' element={
@@ -69,7 +68,7 @@ function App() {
                     </Route>
                 </Routes>
      
-    </div>
+
   )
   
 }

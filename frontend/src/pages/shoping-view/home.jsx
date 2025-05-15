@@ -8,10 +8,12 @@ import { Card, CardContent } from '@/components/ui/card'
 import { FatchAllFilterProduct, fetchProductDetails } from '@/store/shop/products-slice'
 import { useDispatch, useSelector } from 'react-redux'
 import ShopingProductTile from '@/componant/shoping-view/product-tile'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { addToCartItems, fetchCart } from '@/store/shop/cart-slice'
 import ProductDetailsDialog from '@/componant/shoping-view/product-details'
 import { Toast, ToastDescription, ToastProvider, ToastViewport } from '@/components/ui/toast'
+import { HeroSection } from '@/componant/heroSection'
+import { Separator } from '@/components/ui/separator'
 
 function ShopingHome() {
     const{productList,productDetails} = useSelector((state)=>state.ShopProducts)
@@ -27,12 +29,6 @@ function ShopingHome() {
         {id:"lehenga",label:"Lehenga", icon:ShirtIcon},
         {id:"garara",label:"Garara" ,icon:ShirtIcon},
         {id:"sharara",label:"Sharara" ,icon:ShirtIcon},
-        {id:"weddingSuit",label:"Wedding Suit", icon:ShirtIcon},
-        {id:"cottonSuit",label:"Cotton Suit" ,icon:ShirtIcon},
-        {id:"woollenSuit",label:"Woollen Suit" ,icon:ShirtIcon},
-        {id:"readymateSuit",label:"Ready Mate Suit" ,icon:ShirtIcon},
-        {id:"jaipuriSuit",label:"Jaipuri Suit" ,icon:ShirtIcon},
-        {id:"chunriSuit",label:"Chunri Suit", icon:ShirtIcon}
     ];
     function handleNavigateToListingPage(getCurrentItem,section){
         sessionStorage.removeItem('filters');
@@ -80,78 +76,123 @@ function ShopingHome() {
         if(productDetails!==null)setOpenDetailsDialog(true)
         },[productDetails]) 
 
-  return <div className="flex flex-col min-h-screen ">
-    <div className="relative w-full h-[600px] overflow-hidden">
-        {
-            slides.map((slide,index)=>(<img 
-            src={slide}
-            key={index}
-            alt="img" 
-            className={` ${index===currentSlide? 'opacity-100':'opacity-0 '}absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000`}
+  // return <div className="flex flex-col min-h-screen ">
+  //   <div className="relative w-full h-[600px] overflow-hidden">
+  //       {
+  //           slides.map((slide,index)=>(<img 
+  //           src={slide}
+  //           key={index}
+  //           alt="img" 
+  //           className={` ${index===currentSlide? 'opacity-100':'opacity-0 '}absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000`}
             
-            />))
-        }
-        <Button
-         variant='outline'
-         size="icon"
-         className='absolute transform top-1/2 left-4 -translate-y-1/2 bg-zinc-500'
-         onClick={()=>setCurrentSlide(prevSlid=>(prevSlid-1+slides.length)%slides.length)}
-         >
-        <ChevronLeftIcon className='w-4 h-4 '/>
-        </Button>
-        <Button 
-        variant='outline' 
-        size="icon"
-        className='absolute transform top-1/2 right-4 -translate-y-1/2 bg-[#472B18]'
-        onClick={()=>setCurrentSlide(prevSlid=> (prevSlid+1) % slides.length)}
-         >
-        <ChevronRightIcon className='w-4 h-4 '/>
-        </Button>
-    </div>
-    <section className="my-5">
-    <div className="container mx-auto px-4">
-        <h2 className=' text-3xl text-bold mb-8 text-center bg-[#7f471f] bg-opacity-40'>Shop By Category</h2>
-        <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-4 ">
-            {
-                categories.map(categoryItem=> <Card  onClick={()=>handleNavigateToListingPage(categoryItem,'category')}className='cursor-pointer transition duration-100 ease-in-out transform hover:scale-110'>
-                    <CardContent className='flex  flec-col items-center justify-center p-6'>
-                        <categoryItem.icon className='w-12 h-12 mb-4 text-primary'/>
-                        <span className='font-bold'> {categoryItem.label}</span>
-                    </CardContent>
+  //           />))
+  //       }
+  //       <Button
+  //        variant='outline'
+  //        size="icon"
+  //        className='absolute transform top-1/2 left-4 -translate-y-1/2 bg-zinc-500'
+  //        onClick={()=>setCurrentSlide(prevSlid=>(prevSlid-1+slides.length)%slides.length)}
+  //        >
+  //       <ChevronLeftIcon className='w-4 h-4 '/>
+  //       </Button>
+  //       <Button 
+  //       variant='outline' 
+  //       size="icon"
+  //       className='absolute transform top-1/2 right-4 -translate-y-1/2 bg-[#472B18]'
+  //       onClick={()=>setCurrentSlide(prevSlid=> (prevSlid+1) % slides.length)}
+  //        >
+  //       <ChevronRightIcon className='w-4 h-4 '/>
+  //       </Button>
+  //   </div>
+  //   <section className="my-5">
+  //   <div className="container mx-auto px-4">
+  //       <h2 className=' text-3xl text-bold mb-8 text-center bg-[#7f471f] bg-opacity-40'>Shop By Category</h2>
+  //       <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-4 ">
+  //           {
+  //               categories.map(categoryItem=> <Card  onClick={()=>handleNavigateToListingPage(categoryItem,'category')}className='cursor-pointer transition duration-100 ease-in-out transform hover:scale-110'>
+  //                   <CardContent className='flex  flec-col items-center justify-center p-6'>
+  //                       <categoryItem.icon className='w-12 h-12 mb-4 text-primary'/>
+  //                       <span className='font-bold'> {categoryItem.label}</span>
+  //                   </CardContent>
+
+  //               </Card>)
+  //           }
+  //   </div>
+
+  //   </div>
+  //   </section>
+  //   <section className='my-5'>
+  //   <div className="container mx-auto px-4">
+  //   <h2 className=' text-3xl text-bold mb-8 text-center bg-[#7f471f] bg-opacity-40'>Feature Products</h2>
+  //   <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
+  //       {
+  //           productList && productList.length > 0 ?
+  //           productList.map(productItem=><ShopingProductTile
+  //               handleGetProductDetails={handleGetProductDetails}
+  //               handleAddToCart={handleAddToCart}
+  //               product={productItem}
+                                   
+  //           />)
+  //           :null
+  //       }
+  //   </div>
+  //   </div>
+  //   </section>
+  //   <ToastProvider>
+  //       {toastMessage && (
+  //         <Toast>
+  //           <ToastDescription>{toastMessage}</ToastDescription>
+  //         </Toast>
+  //       )}
+  //       <ToastViewport className="fixed bottom-4 right-4 z-50 w-96" />
+  //     </ToastProvider>
+  //   <ProductDetailsDialog open={openDetailsDialog} setOpen={setOpenDetailsDialog} productDetails={productDetails}/>
+  // </div>
+  return (
+<>
+  <div><HeroSection/></div>
+      <section className="my-8">
+     <div className="container text-center mx-auto px-4">
+       
+     <h2 className='text-3xl font-bold mb-8 text-center border-b-2 border-red-700 pb-2 mx-auto inline-block'>
+  Shop By Categories
+</h2>
+        <Link to='/shop/list' className='flex justify-end'> <span className='text-2xl font-semibold hover:text-blue-800 mb-1'>View All Categories</span></Link>
+       <div className="grid grid-cols-5 md:grid-cols-4 lg:grid-cols-3 gap-8">
+       {
+       categories.map(categoryItem=> <Card  onClick={()=>handleNavigateToListingPage(categoryItem,'category')}className='cursor-pointer transition duration-100 ease-in-out transform hover:scale-110'>
+        <CardContent className='flex  flec-col items-center justify-center p-6'>
+                     <categoryItem.icon className='w-12 h-12 mb-4 text-primary'/>
+                    <span className='font-bold'> {categoryItem.label}</span>
+                 </CardContent>
 
                 </Card>)
-            }
+         }
     </div>
 
     </div>
-    </section>
-    <section className='my-5'>
-    <div className="container mx-auto px-4">
-    <h2 className=' text-3xl text-bold mb-8 text-center bg-[#7f471f] bg-opacity-40'>Feature Products</h2>
-    <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
-        {
-            productList && productList.length > 0 ?
-            productList.map(productItem=><ShopingProductTile
-                handleGetProductDetails={handleGetProductDetails}
-                handleAddToCart={handleAddToCart}
-                product={productItem}
-                                   
-            />)
-            :null
-        }
-    </div>
-    </div>
-    </section>
-    <ToastProvider>
-        {toastMessage && (
-          <Toast>
-            <ToastDescription>{toastMessage}</ToastDescription>
-          </Toast>
-        )}
-        <ToastViewport className="fixed bottom-4 right-4 z-50 w-96" />
-      </ToastProvider>
-    <ProductDetailsDialog open={openDetailsDialog} setOpen={setOpenDetailsDialog} productDetails={productDetails}/>
+  </section>
+  <section className='my-5'>
+     <div className="container mx-auto px-4 text-center">
+     <h2 className='text-3xl font-bold mb-8 text-center border-b-2 border-red-700 pb-2 mx-auto inline-block'>
+  Feature Products
+</h2>
+     <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
+         {
+          productList && productList.length > 0 ?
+         productList.map(productItem=><ShopingProductTile
+              handleGetProductDetails={handleGetProductDetails}
+            handleAddToCart={handleAddToCart}
+          product={productItem}                           
+        />)
+        :null
+     }
   </div>
+  </div>
+  </section>
+  <ProductDetailsDialog open={openDetailsDialog} setOpen={setOpenDetailsDialog} productDetails={productDetails}/>
+</>
+  )
 }
 
 export default ShopingHome

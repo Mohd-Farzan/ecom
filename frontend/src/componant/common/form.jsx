@@ -83,9 +83,9 @@ function Commonform({ formControls, formData, setFormData, onSubmit, buttonText 
 
     return (
         <form onSubmit={onSubmit}>
-            <div className="flex flex-col gap-3 shadow-lg">
+            <div className="flex flex-col gap-3 ">
                 {formControls.map((controlItem) => (
-                    <div className="grid w-full gap-1.5 text-slate-100 " key={controlItem.name}>
+                    <div className="grid w-full gap-1.5 text-zinc-700 " key={controlItem.name}>
                         <Label className="mb-1">{controlItem.label}</Label>
                         {renderInputByComponentType(controlItem)}
                     </div>

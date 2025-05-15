@@ -11,21 +11,11 @@ const shopAddressRouter=require('./routes/shop/address-routes')
 const shopOrderRouter=require('./routes/shop/orders-routes')
 const path = require('path')
 dbConnect;
-const _dirname=path.resolve();
 const PORT = process.env.PORT || 5000;
 const app = express();
-const allowedOrigins = [
-  'https://the-lawncollection.onrender.com', 
-];
+
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  
+  origin: 'http://localhost:5173',
   methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT','OPTIONS'], 
   allowedHeaders: [
     'Content-Type',
@@ -42,8 +32,4 @@ app.use('/api/shop/products',shopProductRouter)
 app.use('/api/shop/cart',shopCartRouter)
 app.use('/api/shop/address', shopAddressRouter)
 app.use('/api/shop/order',shopOrderRouter)
-app.use(express.static(path.join(_dirname,"/frontend/dist")))
-app.get("*",(_,res)=>{
-  res.sendFile(path.resolve(_dirname,"frontend","dist","index.html"));
-})
 app.listen(PORT, () => console.log(`app running on port ${PORT}`));
