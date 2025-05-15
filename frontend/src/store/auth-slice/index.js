@@ -14,7 +14,7 @@ export const SignupUser = createAsyncThunk(
     'auth/signup',
     async (FormData, { rejectWithValue }) => {
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/signup', FormData, {
+            const response = await axios.post('https://the-lawncollection.onrender.com/api/auth/signup', FormData, {
                 withCredentials: true
             });
             return response.data;

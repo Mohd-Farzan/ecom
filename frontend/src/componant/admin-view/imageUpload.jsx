@@ -40,7 +40,7 @@ async function UploadImageToCloudinary() {
     SetImageLoadingstate(true)
     const data=new FormData();
     data.append('my_file',imageFile)
-    const response = await axios.post('http://localhost:5000/api/admin/products/upload',data)
+    const response = await axios.post('https://the-lawncollection.onrender.com/api/admin/products/upload',data)
     
     console.log('response',response)
     if(response?.data?.success){
