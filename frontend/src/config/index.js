@@ -16,18 +16,19 @@ export const registerFormControls=[
         unique:true
     },
     {
-        name:'age',
-        label:"age",
-        placeholder:"enter your age ",
-        componentType:"input",
-        type:"number",
-    },
-    {
         name:'password',
         label:"password",
         placeholder:"enter your password ",
         componentType:"input",
         type:"password",
+    },
+     {
+        name:'role',
+        label:'Role',
+        placeholder:'select your role',
+        componentType:'select',
+        type:'select'
+        
     }
 ];
 

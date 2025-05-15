@@ -6,7 +6,7 @@ const enquiryModel = require('../../models/EnquiryModel');
 
 // Signup function
 const signupUser = async (req, res) => {
-    const { email,userName, age, password } = req.body;
+    const { email,userName,password,role } = req.body;
     try {
         const userExist = await signupModel.findOne({ email });
         if (userExist) {
@@ -18,8 +18,8 @@ const signupUser = async (req, res) => {
         const newUser = new signupModel({
             email,
             userName,
-            age,
             password: hash_password,
+            role,
         });
 
         await newUser.save();

@@ -9,8 +9,8 @@ import { toast } from 'react-toastify';
 const initialState = {
   email: '',
   userName:'',
-  age: '',
   password: '',
+  role:'user',
 };
 
 function AuthSignup() {

@@ -6,9 +6,6 @@ const userSchema= new mongoose.Schema({
     userName:{
         type:String
     },
-    age:{
-        type:Number
-    },
     role:{
         type:String,
         default:'user'
