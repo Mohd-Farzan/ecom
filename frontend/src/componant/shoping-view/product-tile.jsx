@@ -2,54 +2,46 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { categoryOptionMap } from '@/config';
-import React from 'react';
+import { Toast } from '@radix-ui/react-toast';
+import React from 'react'
 
-function ShopingProductTile({ product, handleGetProductDetails, handleAddToCart }) {
+function ShopingProductTile({product,handleGetProductDetails, handleAddToCart}) {
   return (
-    <Card className='relative group border-none shadow-none cursor-pointer overflow-hidden w-full max-w-sm mx-auto'>
-      <div
-        onClick={() => handleGetProductDetails(product?._id)}
-        className='relative overflow-hidden h-[250px] sm:h-[300px] lg:h-[350px] transition-all duration-300 group-hover:h-[270px] sm:group-hover:h-[320px] lg:group-hover:h-[370px]'
-      >
-        <div className="relative h-full">
-          <img
-            src={product?.image}
-            alt={product?.title}
-            className='w-full h-full object-cover transition-transform duration-300 group-hover:scale-110'
-          />
-          {product?.salePrice > 0 ? (
-            <Badge className='absolute top-2 left-2 bg-red-400 hover:bg-red-700'>Sale</Badge>
-          ) : null}
+    <Card className='relative group border-none shadow-none cursor-pointer overflow-hidden'>
+        <div onClick={()=>handleGetProductDetails(product?._id)} className='relative overflow-hidden h-[300px] transition-all duration-300 group-hover:h-[350px]'>
+            <div className="relative">
+                <img
+                src={product?.image}
+                alt={product?.title}
+                className=' w-full h-full object-cover transition-transform duration-300 group-hover:scale-110'
+                />
+                {
+                    product?.salePrice> 0 ?<Badge className='absolute top-2 left-2 bg-red-400 hover:bg-red-700'>Sale</Badge>:null
+                }
+            </div>
+            <CardContent className='p-2 '>
+                <h2 className='text-xl font-bold mb-2'>{product?.title}</h2>
+                <div className='flex justify-between items-center mb-2'>
+                    <span className='text-sm text-muted-foreground'>{categoryOptionMap[product?.category]}</span>
+                </div>
+
+                <div className='flex justify-between items-center mb-2'>
+                    <span className={`${product?.salePrice>0?'line-through':''}text-lg font-semibold text-primary`}>${product?.price}</span>
+                    {
+                        product?.salePrice>0? <span className='text-lg font-semibold text-primary' >${product?.salePrice}</span>:null
+                    }
+                </div>
+            </CardContent>
+            
         </div>
+        <CardFooter className='absolute left-0 right-0 bottom-0 bg-[#ffecd1] backdrop-blur p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100'>
+                <Button onClick={()=>handleAddToCart(product?._id)}>
+                    Add To cart
+                </Button>
+            </CardFooter>
 
-        <CardContent className='p-2'>
-          <h2 className='text-lg sm:text-xl font-bold mb-2'>{product?.title}</h2>
-          <div className='flex justify-between items-center mb-2'>
-            <span className='text-sm text-muted-foreground'>
-              {categoryOptionMap[product?.category]}
-            </span>
-          </div>
-
-          <div className='flex justify-between items-center mb-2'>
-            <span className={`${product?.salePrice > 0 ? 'line-through' : ''} text-base sm:text-lg font-semibold text-primary`}>
-              ${product?.price}
-            </span>
-            {product?.salePrice > 0 ? (
-              <span className='text-base sm:text-lg font-semibold text-primary'>
-                ${product?.salePrice}
-              </span>
-            ) : null}
-          </div>
-        </CardContent>
-      </div>
-
-      <CardFooter className='absolute left-0 right-0 bottom-0 bg-[#ffecd1] backdrop-blur p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100'>
-        <Button onClick={() => handleAddToCart(product?._id)} className='w-full'>
-          Add To Cart
-        </Button>
-      </CardFooter>
     </Card>
   );
 }
 
-export default ShopingProductTile;
+export default ShopingProductTile
