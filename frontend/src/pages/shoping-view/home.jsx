@@ -3,7 +3,7 @@ import book1 from '../../assets/img/download.jpeg'
 import book2 from '../../assets/img/images.jpeg'
 import book3 from '../../assets/img/slide2.jpeg'
 import { Button } from '@/components/ui/button'
-import { BabyIcon, ChevronLeftIcon, ChevronRightIcon,  ShirtIcon, ShovelIcon, SquareXIcon, WatchIcon } from 'lucide-react'
+import { ChevronLeftIcon, ChevronRightIcon, ShirtIcon } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { FatchAllFilterProduct, fetchProductDetails } from '@/store/shop/products-slice'
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,187 +11,131 @@ import ShopingProductTile from '@/componant/shoping-view/product-tile'
 import { Link, useNavigate } from 'react-router-dom'
 import { addToCartItems, fetchCart } from '@/store/shop/cart-slice'
 import ProductDetailsDialog from '@/componant/shoping-view/product-details'
-import { Toast, ToastDescription, ToastProvider, ToastViewport } from '@/components/ui/toast'
 import { HeroSection } from '@/componant/heroSection'
-import { Separator } from '@/components/ui/separator'
 
 function ShopingHome() {
-    const{productList,productDetails} = useSelector((state)=>state.ShopProducts)
-    const{user} = useSelector((state)=>state.auth)
-    const [currentSlide,setCurrentSlide]=useState(0);
-    const slides=[book1,book2,book3];
-    const[openDetailsDialog,setOpenDetailsDialog]=useState(false)
-    const [toastMessage, setToastMessage] = useState(null); // Toast message state
-    const dispatch=useDispatch();
-    const navigate=useNavigate();
-    const categories=[
+  const { productList, productDetails } = useSelector((state) => state.ShopProducts)
+  const { user } = useSelector((state) => state.auth)
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const slides = [book1, book2, book3]
+  const [openDetailsDialog, setOpenDetailsDialog] = useState(false)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-        {id:"lehenga",label:"Lehenga", icon:ShirtIcon},
-        {id:"garara",label:"Garara" ,icon:ShirtIcon},
-        {id:"sharara",label:"Sharara" ,icon:ShirtIcon},
-    ];
-    function handleNavigateToListingPage(getCurrentItem,section){
-        sessionStorage.removeItem('filters');
-        const currentFilter={
-            [section]:[getCurrentItem.id]
-        }
-        sessionStorage.setItem('filters',JSON.stringify(currentFilter ));
-        navigate(`/shop/list`)
+  const categories = [
+    { id: 'lehenga', label: 'Lehenga', icon: ShirtIcon },
+    { id: 'garara', label: 'Garara', icon: ShirtIcon },
+    { id: 'sharara', label: 'Sharara', icon: ShirtIcon },
+  ]
 
+  function handleNavigateToListingPage(getCurrentItem, section) {
+    sessionStorage.removeItem('filters')
+    const currentFilter = {
+      [section]: [getCurrentItem.id],
     }
-    function handleAddToCart(productId) {
-        if (!user || !user.id) {
-          console.error("User is not logged in");
-          return;
+    sessionStorage.setItem('filters', JSON.stringify(currentFilter))
+    navigate(`/shop/list`)
+  }
+
+  function handleAddToCart(productId) {
+    if (!user || !user.id) {
+      alert('Please log in to add items to cart.')
+      return
+    }
+
+    dispatch(addToCartItems({ userId: user.id, productId, quantity: 1 }))
+      .then((data) => {
+        if (data?.payload?.success) {
+          dispatch(fetchCart(user.id))
+          alert('Product Added Into Cart')
+        } else {
+          alert('Failed to add product')
         }
-      
-        dispatch(addToCartItems({userId: user.id, productId, quantity: 1 }))
-          .then((data) => {
-            if (data?.payload?.success) {
-             
-              dispatch(fetchCart(user?.id));
-             alert("Product Added Into Cart")
-            } else {
-              alert("fail to add product")
-            }
-          },[setToastMessage])
-          .catch((error) => {
-            console.error("Error adding item to cart:", error);
-          });
-      }
-    function handleGetProductDetails(getCurrentProductId){
-        dispatch(fetchProductDetails(getCurrentProductId))
-      }
-    useEffect(()=>{
-        const timer=setInterval(()=>{
-            setCurrentSlide(prevSlid=>(prevSlid+1) % slides.length)
-        },3000)
-        return clearInterval(timer)
-    },[]);
-    useEffect(()=>{
-        dispatch(FatchAllFilterProduct({filtersParams:{},sortParams:'price-lowtohigh'}))
-    },[dispatch])
-    
-    useEffect(()=>{
-        if(productDetails!==null)setOpenDetailsDialog(true)
-        },[productDetails]) 
+      })
+      .catch((error) => {
+        console.error('Error adding item to cart:', error)
+      })
+  }
 
-  // return <div className="flex flex-col min-h-screen ">
-  //   <div className="relative w-full h-[600px] overflow-hidden">
-  //       {
-  //           slides.map((slide,index)=>(<img 
-  //           src={slide}
-  //           key={index}
-  //           alt="img" 
-  //           className={` ${index===currentSlide? 'opacity-100':'opacity-0 '}absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000`}
-            
-  //           />))
-  //       }
-  //       <Button
-  //        variant='outline'
-  //        size="icon"
-  //        className='absolute transform top-1/2 left-4 -translate-y-1/2 bg-zinc-500'
-  //        onClick={()=>setCurrentSlide(prevSlid=>(prevSlid-1+slides.length)%slides.length)}
-  //        >
-  //       <ChevronLeftIcon className='w-4 h-4 '/>
-  //       </Button>
-  //       <Button 
-  //       variant='outline' 
-  //       size="icon"
-  //       className='absolute transform top-1/2 right-4 -translate-y-1/2 bg-[#472B18]'
-  //       onClick={()=>setCurrentSlide(prevSlid=> (prevSlid+1) % slides.length)}
-  //        >
-  //       <ChevronRightIcon className='w-4 h-4 '/>
-  //       </Button>
-  //   </div>
-  //   <section className="my-5">
-  //   <div className="container mx-auto px-4">
-  //       <h2 className=' text-3xl text-bold mb-8 text-center bg-[#7f471f] bg-opacity-40'>Shop By Category</h2>
-  //       <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-4 ">
-  //           {
-  //               categories.map(categoryItem=> <Card  onClick={()=>handleNavigateToListingPage(categoryItem,'category')}className='cursor-pointer transition duration-100 ease-in-out transform hover:scale-110'>
-  //                   <CardContent className='flex  flec-col items-center justify-center p-6'>
-  //                       <categoryItem.icon className='w-12 h-12 mb-4 text-primary'/>
-  //                       <span className='font-bold'> {categoryItem.label}</span>
-  //                   </CardContent>
+  function handleGetProductDetails(productId) {
+    dispatch(fetchProductDetails(productId))
+  }
 
-  //               </Card>)
-  //           }
-  //   </div>
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length)
+    }, 3000)
+    return () => clearInterval(timer)
+  }, [])
 
-  //   </div>
-  //   </section>
-  //   <section className='my-5'>
-  //   <div className="container mx-auto px-4">
-  //   <h2 className=' text-3xl text-bold mb-8 text-center bg-[#7f471f] bg-opacity-40'>Feature Products</h2>
-  //   <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
-  //       {
-  //           productList && productList.length > 0 ?
-  //           productList.map(productItem=><ShopingProductTile
-  //               handleGetProductDetails={handleGetProductDetails}
-  //               handleAddToCart={handleAddToCart}
-  //               product={productItem}
-                                   
-  //           />)
-  //           :null
-  //       }
-  //   </div>
-  //   </div>
-  //   </section>
-  //   <ToastProvider>
-  //       {toastMessage && (
-  //         <Toast>
-  //           <ToastDescription>{toastMessage}</ToastDescription>
-  //         </Toast>
-  //       )}
-  //       <ToastViewport className="fixed bottom-4 right-4 z-50 w-96" />
-  //     </ToastProvider>
-  //   <ProductDetailsDialog open={openDetailsDialog} setOpen={setOpenDetailsDialog} productDetails={productDetails}/>
-  // </div>
+  useEffect(() => {
+    dispatch(FatchAllFilterProduct({ filtersParams: {}, sortParams: 'price-lowtohigh' }))
+  }, [dispatch])
+
+  useEffect(() => {
+    if (productDetails !== null) setOpenDetailsDialog(true)
+  }, [productDetails])
+
   return (
-<>
-  <div><HeroSection/></div>
+    <>
+      <HeroSection />
+
+      {/* Shop by Categories */}
       <section className="my-8">
-     <div className="container text-center mx-auto px-4">
-       
-     <h2 className='text-3xl font-bold mb-8 text-center border-b-2 border-red-700 pb-2 mx-auto inline-block'>
-  Shop By Categories
-</h2>
-        <Link to='/shop/list' className='flex justify-end'> <span className='text-2xl font-semibold hover:text-blue-800 mb-1'>View All Categories</span></Link>
-       <div className="grid grid-cols-5 md:grid-cols-4 lg:grid-cols-3 gap-8">
-       {
-       categories.map(categoryItem=> <Card  onClick={()=>handleNavigateToListingPage(categoryItem,'category')}className='cursor-pointer transition duration-100 ease-in-out transform hover:scale-110'>
-        <CardContent className='flex  flec-col items-center justify-center p-6'>
-                     <categoryItem.icon className='w-12 h-12 mb-4 text-primary'/>
-                    <span className='font-bold'> {categoryItem.label}</span>
-                 </CardContent>
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-6 border-b-2 border-red-700 pb-2 inline-block">
+            Shop By Categories
+          </h2>
+          <div className="flex justify-end mb-4">
+            <Link to="/shop/list" className="text-xl font-semibold hover:text-blue-700">
+              View All Categories
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            {categories.map((categoryItem, index) => (
+              <Card
+                key={categoryItem.id}
+                onClick={() => handleNavigateToListingPage(categoryItem, 'category')}
+                className="cursor-pointer hover:scale-105 transition-transform"
+              >
+                <CardContent className="flex flex-col items-center justify-center p-6">
+                  <categoryItem.icon className="w-10 h-10 mb-3 text-primary" />
+                  <span className="font-semibold text-sm sm:text-base">{categoryItem.label}</span>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
 
-                </Card>)
-         }
-    </div>
+      {/* Feature Products */}
+      <section className="my-8">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-6 border-b-2 border-red-700 pb-2 inline-block">
+            Feature Products
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {productList && productList.length > 0
+              ? productList.map((productItem) => (
+                  <ShopingProductTile
+                    key={productItem._id}
+                    handleGetProductDetails={handleGetProductDetails}
+                    handleAddToCart={handleAddToCart}
+                    product={productItem}
+                  />
+                ))
+              : <p className="col-span-full text-gray-500">No products found.</p>}
+          </div>
+        </div>
+      </section>
 
-    </div>
-  </section>
-  <section className='my-5'>
-     <div className="container mx-auto px-4 text-center">
-     <h2 className='text-3xl font-bold mb-8 text-center border-b-2 border-red-700 pb-2 mx-auto inline-block'>
-  Feature Products
-</h2>
-     <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
-         {
-          productList && productList.length > 0 ?
-         productList.map(productItem=><ShopingProductTile
-              handleGetProductDetails={handleGetProductDetails}
-            handleAddToCart={handleAddToCart}
-          product={productItem}                           
-        />)
-        :null
-     }
-  </div>
-  </div>
-  </section>
-  <ProductDetailsDialog open={openDetailsDialog} setOpen={setOpenDetailsDialog} productDetails={productDetails}/>
-</>
+      {/* Product Details Dialog */}
+      <ProductDetailsDialog
+        open={openDetailsDialog}
+        setOpen={setOpenDetailsDialog}
+        productDetails={productDetails}
+      />
+    </>
   )
 }
 
