@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
-import image1 from "../assets/img/image1.jpg"
-import image2 from "../assets/img/image2.jpg"
-import image3 from "../assets/img/image3.jpg"
+import image1 from "../../assets/img/image1.jpg"
+import image2 from "../../assets/img/image2.jpg"
+import image3 from "../../assets/img/image3.jpg"
 
 export function HeroSection() {
   return (
@@ -20,7 +20,7 @@ export function HeroSection() {
         {/* Main featured image */}
         <div className="flex items-center justify-center">
           <img
-            src={image3 || "/placeholder.svg"}
+            src={image3 }
             alt="Featured wedding dress"
             className="h-auto w-full max-h-[350px] object-contain"
           />
@@ -30,14 +30,14 @@ export function HeroSection() {
         <div className="grid grid-cols-2 gap-3">
           <div className="overflow-hidden rounded-lg">
             <img
-              src={image2 || "/placeholder.svg"}
+              src={image2}
               alt="Wedding dress collection"
               className="h-[180px] w-full object-cover"
             />
           </div>
           <div className="overflow-hidden rounded-lg">
             <img
-              src={image1 || "/placeholder.svg"}
+              src={image1 }
               alt="Formal wear collection"
               className="h-[180px] w-full object-cover"
             />
@@ -50,14 +50,14 @@ export function HeroSection() {
         <div className="flex flex-col space-y-4">
           <div className="overflow-hidden rounded-lg">
             <img
-              src={image2 || "/placeholder.svg"}
+              src={image2}
               alt="Wedding dress collection"
               className="h-[220px] w-full object-cover"
             />
           </div>
           <div className="overflow-hidden rounded-lg">
             <img
-              src={image1 || "/placeholder.svg"}
+              src={image1}
               alt="Formal wear collection"
               className="h-[220px] w-full object-cover"
             />
@@ -67,7 +67,7 @@ export function HeroSection() {
         <div className="flex flex-col">
           <div className="flex items-center justify-center mb-4">
             <img
-              src={image3 || "/placeholder.svg"}
+              src={image3}
               alt="Featured wedding dress"
               className="h-auto max-h-[300px] w-auto object-contain"
             />
@@ -88,7 +88,7 @@ export function HeroSection() {
         <div className="flex flex-col space-y-4">
           <div className="overflow-hidden rounded-lg ml-4">
             <img
-              src={image2 || "/placeholder.svg"}
+              src={image2}
               alt="Wedding dress collection"
               width={300}
               height={400}
@@ -97,7 +97,7 @@ export function HeroSection() {
           </div>
           <div className="overflow-hidden rounded-lg ml-4">
             <img
-              src={image1 || "/placeholder.svg"}
+              src={image1}
               alt="Formal wear collection"
               width={300}
               height={400}
@@ -108,7 +108,7 @@ export function HeroSection() {
 
         <div className="flex items-center justify-center">
           <img
-            src={image3 || "/placeholder.svg"}
+            src={image3}
             alt="Featured wedding dress"
             width={600}
             height={800}
