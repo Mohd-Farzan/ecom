@@ -39,54 +39,31 @@ function HeaderRight() {
     dispatch(fetchCart(user?.id))
   }, [dispatch])
 
-  return (
-    <div className="flex items-center gap-2 md:gap-4">
+    return (
+    <div className="flex lg:items-center gap-2 lg:flex-row flex-col md:gap-4">
       <Sheet open={openCartSheet} onOpenChange={() => setOpenCartSheet(false)}>
-        <SheetTrigger asChild>
-          <Button
-            className="relative bg-black p-0 h-9 w-9"
-            onClick={() => setOpenCartSheet(true)}
-            variant="outline"
-            size="icon"
-          >
-            <ShoppingCart className="h-5 w-5 text-white" />
-            {cartItems?.items?.length > 0 && (
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-                {cartItems.items.length}
-              </span>
-            )}
-            <span className="sr-only">Cart</span>
-          </Button>
-        </SheetTrigger>
-        <CartWrapper
-          setOpenCartSheet={setOpenCartSheet}
-          cartItems={cartItems && cartItems.items && cartItems.items.length > 0 ? cartItems.items : []}
-        />
+        <Button className="relative bg-black p-0 h-9 w-9" onClick={() => setOpenCartSheet(true)} variant="outline" size="icon">
+          <ShoppingCart className="h-5 w-5 text-white" />
+          <span className="sr-only">Add to Cart</span>
+        </Button>
+        <CartWrapper setOpenCartSheet={setOpenCartSheet} cartItems={cartItems && cartItems.items && cartItems.items.length > 0 ? cartItems.items : []} />
       </Sheet>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Avatar className="h-9 w-9 bg-slate-200 cursor-pointer">
+          <Avatar className="bg-slate-200">
             <AvatarFallback className="bg-zinc-800 text-white font-extrabold">
-              {user?.userName ? user.userName[0].toUpperCase() : "U"}
+              {user?.userName ? user.userName[0].toUpperCase() : 'U'}
             </AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuItem onClick={() => navigate("/shop/account")}>Account</DropdownMenuItem>
-          <DropdownMenuItem onClick={() => navigate("/shop/settings")}>Settings</DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => {
-              handleLogout()
-            }}
-          >
-            {" "}
-            <LogOut className="h-4 w-4 mr-2" />
-            Logout
-          </DropdownMenuItem>
+        <DropdownMenuContent>
+          <DropdownMenuItem onClick={() => navigate('/shop/account')}>Account</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => navigate('/shop/settings')}>Settings</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => { handleLogout() }}> <LogOut />Logout</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
-  )
+  );
 }
 
 function ShopingHeader() {
