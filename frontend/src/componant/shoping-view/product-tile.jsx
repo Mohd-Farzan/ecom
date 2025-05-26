@@ -7,19 +7,19 @@ import React from 'react'
 
 function ShopingProductTile({product,handleGetProductDetails, handleAddToCart}) {
   return (
-    <Card className='relative group border-none shadow-none cursor-pointer overflow-hidden'>
-        <div onClick={()=>handleGetProductDetails(product?._id)} className='relative overflow-hidden h-[300px] transition-all duration-300 group-hover:h-[350px]'>
+    <Card className='w-full max-w-sm mx-auto hover:shadow-lg hover:transition-all'>
+        <div onClick={()=>handleGetProductDetails(product?._id)}>
             <div className="relative">
                 <img
                 src={product?.image}
                 alt={product?.title}
-                className=' w-full h-full object-cover transition-transform duration-300 group-hover:scale-110'
+                className='w-full h-[300px] object-cover rounded-t-lg'
                 />
                 {
                     product?.salePrice> 0 ?<Badge className='absolute top-2 left-2 bg-red-400 hover:bg-red-700'>Sale</Badge>:null
                 }
             </div>
-            <CardContent className='p-2 '>
+            <CardContent className='p-4 '>
                 <h2 className='text-xl font-bold mb-2'>{product?.title}</h2>
                 <div className='flex justify-between items-center mb-2'>
                     <span className='text-sm text-muted-foreground'>{categoryOptionMap[product?.category]}</span>
@@ -34,8 +34,8 @@ function ShopingProductTile({product,handleGetProductDetails, handleAddToCart}) 
             </CardContent>
             
         </div>
-        <CardFooter className='absolute left-0 right-0 bottom-0 bg-[#ffecd1] backdrop-blur p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100'>
-                <Button onClick={()=>handleAddToCart(product?._id)}>
+        <CardFooter>
+                <Button onClick={()=>handleAddToCart(product?._id)}className='w-full'>
                     Add To cart
                 </Button>
             </CardFooter>
