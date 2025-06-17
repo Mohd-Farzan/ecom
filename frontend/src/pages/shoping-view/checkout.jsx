@@ -79,13 +79,13 @@ if( approvalURL){
 
   
   return <div className="flex flex-col justify-between ">
-    <div className="relative bg-[#f5dc6c] bg-opacity-40 p-5 w-full overflow-hidden">
+    <div className="relative bg-[#f5e59c] bg-opacity-40 p-5 w-full overflow-hidden">
      <h1 className='font-semibold text-3xl'>Checkout Page</h1>
     </div>
     <SelectSeparator className='bg-zinc-700 my-4'/>
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mt-5 p-5 border rounded ">
       <Address setCurrentSelectedAddress={setCurrentSelectedAddress}  />
-      <div className="flex flex-col gap-4 border border-r-2 rounded p-10 bg-[#edaf82] ">
+      <div className="flex flex-col gap-4 border border-r-2 rounded p-10 bg-[#ffecd1] ">
         {
           cartItems && cartItems.items &&cartItems.items.length > 0 ? cartItems.items.map(item=> <CartItemsContent cartItem={item}/>):null
         }
