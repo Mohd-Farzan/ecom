@@ -28,7 +28,7 @@ function Profile() {
        </Toast>
       }
     }
-  return <div className="flex items-center justify-center gap-2 bg-[#edaf82]">
+  return <div className="flex items-center justify-center gap-2 bg-[#ffecd1]">
     <div className="flex cols-1 flex-col w-full p-5">
         <Commonform
         formControls={registerFormControls}

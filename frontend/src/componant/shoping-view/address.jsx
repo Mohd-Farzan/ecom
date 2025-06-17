@@ -78,7 +78,7 @@ function Address({setCurrentSelectedAddress}) {
  
   return (
     
-  <Card className='bg-[#edaf82] border rounded border-r-2'>
+  <Card className='bg-[#ffecd1] border rounded border-r-2'>
     
     <CardHeader>
       <CardTitle>

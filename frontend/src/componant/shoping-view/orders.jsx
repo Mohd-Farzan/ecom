@@ -8,7 +8,7 @@ import ShoppingOrderDetails from './order-details'
 
 function ShoppingOrders() {
   const [openDetailsDialog,setOpenDetailsDialog]=useState(false)
-  return <Card className='bg-[#edaf82]'>
+  return <Card className='bg-[#ffecd1]'>
     <CardHeader>
       <CardTitle>Orders History</CardTitle>
     </CardHeader>

@@ -107,7 +107,7 @@ function ShopingHeader() {
       {/* Top header section */}
       <div className="container flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-2">
-          <img src={logo || "/placeholder.svg"} alt="logo" className="w-[60px] md:w-[100px] object-cover" />
+          <img src={logo || "/placeholder.svg"} alt="logo" className="w-[60px] md:w-[100px] object-cover mt-2" />
           <Link to="/shop/home" className="hidden md:flex items-center">
             <span className="text-sm md:text-xl font-bold">THE LAWN COLLECTION</span>
           </Link>
